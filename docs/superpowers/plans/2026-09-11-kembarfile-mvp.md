@@ -27,12 +27,13 @@
 - Create: `finder/finder_test.go`
 - Create: `finder/finder.go`
 - Create: `cmd/kembarfile/main.go`
+- Create: `cmd/kembarfile/main_test.go`
 
 **Interfaces:**
 - Consumes: one root-directory path from the CLI.
 - Produces: `finder.Find(root string) (finder.Result, error)` where `Result` contains `Groups []Group`, `Warnings []Warning`, and `Reclaimable int64`.
 
-- [ ] **Step 1: Declare the module**
+- [x] **Step 1: Declare the module**
 
 Create `go.mod`:
 
@@ -42,7 +43,7 @@ module github.com/rrafifnanda/kembarfile
 go 1.27
 ```
 
-- [ ] **Step 2: Write the failing finder test**
+- [x] **Step 2: Write the failing finder test**
 
 Create `finder/finder_test.go`:
 
@@ -91,13 +92,13 @@ func TestFind(t *testing.T) {
 }
 ```
 
-- [ ] **Step 3: Run the test and confirm the expected failure**
+- [x] **Step 3: Run the test and confirm the expected failure**
 
 Run: `go test ./finder`
 
 Expected: compilation fails because `Find` is undefined.
 
-- [ ] **Step 4: Implement the minimum reusable finder**
+- [x] **Step 4: Implement the minimum reusable finder**
 
 Create `finder/finder.go`:
 
@@ -208,7 +209,7 @@ func Find(root string) (Result, error) {
 }
 ```
 
-- [ ] **Step 5: Format and run the finder test**
+- [x] **Step 5: Format and run the finder test**
 
 Run: `gofmt -w finder/finder.go finder/finder_test.go`
 
@@ -216,7 +217,7 @@ Run: `go test ./finder`
 
 Expected: `ok github.com/rrafifnanda/kembarfile/finder`.
 
-- [ ] **Step 6: Implement the thin CLI**
+- [x] **Step 6: Implement the thin CLI**
 
 Create `cmd/kembarfile/main.go`:
 
@@ -254,7 +255,7 @@ func main() {
 }
 ```
 
-- [ ] **Step 7: Verify the complete program**
+- [x] **Step 7: Verify the complete program**
 
 Run: `gofmt -w cmd/kembarfile/main.go`
 
@@ -270,7 +271,7 @@ Create a temporary sample with shell commands, then run `go run ./cmd/kembarfile
 
 Expected: one duplicate group, all matching paths, and the correct reclaimable-byte total.
 
-- [ ] **Step 8: Commit the working MVP**
+- [x] **Step 8: Commit the working MVP**
 
 ```bash
 git add go.mod finder/finder.go finder/finder_test.go cmd/kembarfile/main.go
