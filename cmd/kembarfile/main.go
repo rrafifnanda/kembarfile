@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/rrafifnanda/kembarfile/finder"
+	"github.com/rrafifnanda/kembarfile/internal/finder"
 )
 
 func main() {
