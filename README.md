@@ -1,65 +1,47 @@
 # KembarFile
 
-KembarFile adalah CLI sederhana untuk mencari file duplikat di dalam sebuah folder. File dibandingkan berdasarkan ukuran dan hash SHA-256, jadi nama file boleh berbeda.
+Aplikasi kecil buat mencari file yang isinya sama, meskipun nama atau lokasinya berbeda. KembarFile cuma membaca file untuk dibandingkan—tidak ada file yang dihapus atau dipindahkan.
 
-Program ini hanya membaca dan menampilkan hasil. Tidak ada file yang dihapus atau dipindahkan.
+## Download
 
-## Fitur
+Versi siap pakai ada di halaman [Releases](https://github.com/rrafifnanda/kembarfile/releases/latest).
 
-- Memindai folder beserta seluruh subfolder
-- Mengabaikan symbolic link dan file non-reguler
-- Menampilkan kelompok file duplikat
-- Menghitung ruang penyimpanan yang bisa dibebaskan
-- Tetap melanjutkan pemindaian ketika sebagian file tidak dapat dibaca
+- **Linux:** download file `.AppImage`, izinkan file untuk dieksekusi lewat Properties, lalu klik dua kali.
+- **Windows:** download file `.exe`, lalu buka seperti aplikasi biasa.
 
-## Menjalankan
+## Cara pakai
 
-Pastikan Go sudah terpasang, lalu jalankan:
+1. Buka KembarFile.
+2. Klik **Pilih Folder**.
+3. Pilih folder yang ingin diperiksa.
+4. Klik **Scan** dan tunggu hasilnya.
+
+File dikelompokkan berdasarkan ukuran, kemudian dicocokkan dengan SHA-256. Symbolic link dilewati dan file yang tidak bisa dibaca akan ditampilkan sebagai peringatan.
+
+## CLI
+
+Kalau lebih nyaman lewat terminal:
 
 ```bash
 go run ./cmd/kembarfile /path/ke/folder
 ```
 
-Atau build menjadi binary:
+Build binary CLI:
 
 ```bash
 go build -o kembarfile ./cmd/kembarfile
-./kembarfile /path/ke/folder
 ```
 
-Contoh hasil:
+## Build desktop dari source
 
-```text
-Group 1 (1024 bytes):
-  /home/user/foto/copy.jpg
-  /home/user/foto/original.jpg
-1 duplicate group(s), 1024 bytes reclaimable
-```
-
-## Aplikasi desktop Linux
-
-Jalankan aplikasi desktop dengan:
-
-```bash
-go run -tags migrated_fynedo ./cmd/kembarfile-desktop
-```
-
-Untuk membuat binary:
+Linux membutuhkan Go, GCC, dan library pengembangan untuk OpenGL, X11, serta Wayland. Daftar paketnya tersedia di [dokumentasi Fyne](https://docs.fyne.io/started/quick/).
 
 ```bash
 go build -tags migrated_fynedo -o kembarfile-desktop ./cmd/kembarfile-desktop
 ```
-
-Build desktop memerlukan Go, GCC, OpenGL, X11, Wayland, dan header pengembangan terkait. Lihat [persyaratan Linux Fyne](https://docs.fyne.io/started/quick/).
-
-Versi siap pakai dapat diunduh dari halaman [Releases](https://github.com/rrafifnanda/kembarfile/releases). Setelah mengunduh AppImage, aktifkan izin eksekusi dari Properties jika file manager Anda belum mengaktifkannya, lalu klik dua kali untuk membuka.
-
-## Pengembangan
 
 Jalankan test dengan:
 
 ```bash
 go test ./...
 ```
-
-Kode pemindai berada di `internal/finder` dan digunakan bersama oleh CLI serta aplikasi desktop.
