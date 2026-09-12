@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=KembarFile
+Comment=Cari file duplikat tanpa mengubah data
+Exec=kembarfile
+Icon=kembarfile
+Terminal=false
+Categories=Utility;FileTools;

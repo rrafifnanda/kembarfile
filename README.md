@@ -36,6 +36,24 @@ Group 1 (1024 bytes):
 1 duplicate group(s), 1024 bytes reclaimable
 ```
 
+## Aplikasi desktop Linux
+
+Jalankan aplikasi desktop dengan:
+
+```bash
+go run -tags migrated_fynedo ./cmd/kembarfile-desktop
+```
+
+Untuk membuat binary:
+
+```bash
+go build -tags migrated_fynedo -o kembarfile-desktop ./cmd/kembarfile-desktop
+```
+
+Build desktop memerlukan Go, GCC, OpenGL, X11, Wayland, dan header pengembangan terkait. Lihat [persyaratan Linux Fyne](https://docs.fyne.io/started/quick/).
+
+Versi siap pakai dapat diunduh dari halaman [Releases](https://github.com/rrafifnanda/kembarfile/releases). Setelah mengunduh AppImage, aktifkan izin eksekusi dari Properties jika file manager Anda belum mengaktifkannya, lalu klik dua kali untuk membuka.
+
 ## Pengembangan
 
 Jalankan test dengan:
@@ -44,4 +62,4 @@ Jalankan test dengan:
 go test ./...
 ```
 
-Kode pemindai berada di `internal/finder`, terpisah dari CLI agar bisa digunakan kembali saat versi desktop dibuat.
+Kode pemindai berada di `internal/finder` dan digunakan bersama oleh CLI serta aplikasi desktop.
